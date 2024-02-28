@@ -1,9 +1,205 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Hello World</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-  </body>
+<!doctype html>
+<html class="no-js" lang="zxx">
+    <head>
+        <!-- Meta Tags -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="keywords" content="Site keywords here">
+		<meta name="description" content="">
+		<meta name='copyright' content=''>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<!-- Title -->
+        <title>BronchAI - Tumor Segmentation</title>
+
+		<link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
+		
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+		<!-- Nice Select CSS -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='nice-select.css') }}">
+		<!-- Font Awesome CSS -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.min.css') }}">
+		<!-- icofont CSS -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='icofont.css') }}">
+		<!-- Slicknav -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='slicknav.min.css') }}">
+		<!-- Owl Carousel CSS -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='owl-carousel.css') }}">
+		<!-- Datepicker CSS -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='datepicker.css') }}">
+		<!-- Animate CSS -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='animate.min.css') }}">
+		<!-- Magnific Popup CSS -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='magnific-popup.css') }}">
+		
+		<!-- Medipro CSS -->
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='responsive.css') }}">
+		<style>
+			.error-page .error-inner {
+				display: inline-block;
+			}
+			.error-page .error-inner h1 {
+				font-size: 70px;
+				text-shadow: 3px 5px 2px #3333;
+				color: #1A76D1;
+				font-weight: 700;
+			}
+			.error-page .error-inner h1 span {
+				display: block;
+				font-size: 25px;
+				color: #333;
+				font-weight: 600;
+				text-shadow: none;
+				padding-top: 25px;
+			
+			}
+			.error-page .error-inner p {
+				padding: 20px 15px;
+			}
+			.sub-bt{
+				background-color: #1a76d1;
+				height: 45px;
+				width: 120px;
+				color: white;
+				font-weight: semi-bold;
+				font-size: 17px;
+				border-style: none;
+				border-radius: 5px;
+			}
+		</style>
+    </head>
+    <body>	
+	
+		<!-- Header Area -->
+		<header class="header" >
+
+	
+			<!-- End Topbar -->
+			<!-- Header Inner -->
+			<div class="header-inner">
+				<div class="container">
+					<div class="inner">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-12">
+								<!-- Start Logo -->
+								<div class="logo">
+									<a href="index.html"><img style="padding-left: 10px; width: 240px;" src="https://res.cloudinary.com/dkyur0ade/image/upload/v1708836652/logo_zsqviz.jpg" alt="#"></a>
+								</div>
+								<!-- End Logo -->
+								<!-- Mobile Nav -->
+								<div class="mobile-nav"></div>
+								<!-- End Mobile Nav -->
+							</div>
+							<div class="col-lg-7 col-md-9 col-12">
+								<!-- Main Menu -->
+								<div class="main-menu">
+									<nav class="navigation">
+										<ul class="nav menu">
+											<li class="active"><a href="index.html">Home</a></li>
+											<li><a href="#">Portals</a>
+												<ul class="dropdown">
+													<li><a href="#">Doctor's Portal</a></li>
+													<li><a href="#">Patient's Portal</a></li>
+												</ul>
+											</li>
+											<li><a href="#">Visualization </a></li>
+											<li><a href="#">About Us</a></li>
+											<li><a href="#">Contact Us</a></li>
+											
+									</nav>
+								</div>
+										</ul>
+									</nav>
+								</div>
+								<!--/ End Main Menu -->
+							</div>
+							
+						</div>
+					</div>
+			</div>
+			<!--/ End Header Inner -->
+		</header>
+		<!-- End Header Area -->
+		
+		<!-- Error Page -->
+		<section class="error-page section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 offset-lg-3 col-12">
+						<!-- Error Inner -->
+						<div class="error-inner" style="text-align:center;">
+							<h1 style="padding-top: 0px;">Tumor Segmentation <span>BronchAI streamlines tumor segmentation for enhanced diagnostics and improved patient outcomes</span></h1>
+							<p>BronchAI revolutionizes tumor segmentation with its cutting-edge technology, accurately identifying and delineating lung tumors to streamline medical workflows and improve diagnostic accuracy for better patient outcomes.</p>
+							<form action="/predict" method="POST" enctype="multipart/form-data">
+								<label for="imagefile" class="image-content text-dark">Upload the image:</label>
+								<input type="file" name="image" class="choose-file"><br><br>
+								<input type="submit" value="Predict" class="process-image sub-bt">
+							</form>
+						</div>
+						<!--/ End Error Inner -->
+						<!--{% if prediction_value %}
+      						<h4 style="color:black; padding-top:10px;" class="h11">{{ prediction_value }}</h4>
+      					{% endif %}-->
+						  
+						{% if prediction_value %}
+						  <p style="font-weight:bold; padding-top:10px; font-size:20px;">{{ prediction_value }}</p>
+					  	{% endif %}
+					  	{% if image_base64 %}
+						  <img src="data:image/png;base64,{{ image_base64 }}" alt="Segmented Image">
+					  	{% endif %}
+					  
+
+					</div>
+				</div>
+			</div>
+		</section>	
+		<!--/ End Error Page -->	
+
+
+		<!-- jquery Min JS -->
+        <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+		<!-- jquery Migrate JS -->
+		<script src="{{ url_for('static', filename='jquery-migrate-3.0.0.js') }}"></script>
+		<!-- jquery Ui JS -->
+		<script src="{{ url_for('static', filename='jquery-ui.min.js') }}"></script>
+		<!-- Easing JS -->
+		<script src="{{ url_for('static', filename='easing.js') }}"></script>
+		<!-- Color JS -->
+		<script src="{{ url_for('static', filename='colors.js') }}"></script>
+		<!-- Popper JS -->
+		<script src="{{ url_for('static', filename='popper.min.js') }}"></script>
+		<!-- Bootstrap Datepicker JS -->
+		<script src="{{ url_for('static', filename='bootstrap-datepicker.js') }}"></script>
+		<!-- Jquery Nav JS -->
+		<script src="{{ url_for('static', filename='jquery.nav.js') }}"></script>
+		<!-- Slicknav JS -->
+		<script src="{{ url_for('static', filename='slicknav.min.js') }}"></script>
+		<!-- ScrollUp JS -->
+		<script src="{{ url_for('static', filename='jquery.scrollUp.min.js') }}"></script>
+		<!-- Niceselect JS -->
+		<script src="{{ url_for('static', filename='niceselect.js') }}"></script>
+		<!-- Tilt Jquery JS -->
+		<script src="{{ url_for('static', filename='tilt.jquery.min.js') }}"></script>
+		<!-- Owl Carousel JS -->
+		<script src="{{ url_for('static', filename='owl-carousel.js') }}"></script>
+		<!-- counterup JS -->
+		<script src="{{ url_for('static', filename='jquery.counterup.min.js') }}"></script>
+		<!-- Steller JS -->
+		<script src="{{ url_for('static', filename='steller.js') }}"></script>
+		<!-- Wow JS -->
+		<script src="{{ url_for('static', filename='wow.min.js') }}"></script>
+		<!-- Magnific Popup JS -->
+		<script src="{{ url_for('static', filename='jquery.magnific-popup.min.js') }}"></script>
+		<!-- Counter Up CDN JS -->
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+		<!-- Bootstrap JS -->
+		<script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+
+    </body>
 </html>
